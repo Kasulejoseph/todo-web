@@ -1,7 +1,6 @@
 import "./App.css";
-import { Navbar, Container, Col, Row, Form } from "react-bootstrap";
-import Home from "../Home";
-import AddTodo from "../AddTodo";
+import { Navbar, Container, Col, Row } from "react-bootstrap";
+import { GetAllTodos, AddTodo, SelectTodo } from "../Todo";
 
 function App() {
   return (
@@ -22,20 +21,10 @@ function App() {
               New Lists
             </Col>
             <Col>
-              <Form>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Control as="select">
-                    <option>Select a category</option>
-                    <option>Science</option>
-                    <option>Sports</option>
-                    <option>Java</option>
-                    <option>Python</option>
-                  </Form.Control>
-                </Form.Group>
-              </Form>
+              <SelectTodo />
             </Col>
           </Row>
-          <Home />
+          <GetAllTodos />
           <AddTodo />
         </Container>
       </section>
