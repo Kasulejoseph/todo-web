@@ -34,7 +34,6 @@ export const SelectTodo = () => {
     setInputs(target.value);
     dispatch(getAllTodos(`category=${target.value}`));
   };
-
   return (
     <>
       <SelectForm input={input} handleChange={handleChange} />
