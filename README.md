@@ -4,6 +4,8 @@
 | ![Statements](https://img.shields.io/badge/Coverage-54.47%25-red.svg) | ![Branches](https://img.shields.io/badge/Coverage-45%25-red.svg) | ![Functions](https://img.shields.io/badge/Coverage-66.67%25-red.svg) | ![Lines](https://img.shields.io/badge/Coverage-53.57%25-red.svg)    |
 # Getting Started with Create React App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/550e1643-21fc-4b53-93d9-b88ba6766de4/deploy-status)](https://app.netlify.com/sites/letgetitdone/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
