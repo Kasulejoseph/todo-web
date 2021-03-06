@@ -2,6 +2,10 @@
 | Statements                  | Branches                | Functions                 | Lines                |
 | --------------------------- | ----------------------- | ------------------------- | -------------------- |
 | ![Statements](https://img.shields.io/badge/Coverage-54.47%25-red.svg) | ![Branches](https://img.shields.io/badge/Coverage-45%25-red.svg) | ![Functions](https://img.shields.io/badge/Coverage-66.67%25-red.svg) | ![Lines](https://img.shields.io/badge/Coverage-53.57%25-red.svg)    |
+
+### Codcov
+[![codecov](https://codecov.io/gh/Kasulejoseph/todo-web/branch/main/graph/badge.svg?token=9SO2W4PYQI)](https://codecov.io/gh/Kasulejoseph/todo-web)
+    
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
