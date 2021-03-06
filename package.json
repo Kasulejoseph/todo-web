@@ -36,11 +36,6 @@
       "react-app/jest"
     ]
   },
-  "jest": {
-    "coverageReporters": [
-      "json-summary"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -4,7 +4,7 @@ import store from '../redux/store'
 
 import App from '.';
 
-test('renders learn react link', () => {
+test('renders the app', () => {
   render(
     <Provider store={store}>
       <App />
