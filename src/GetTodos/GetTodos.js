@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ListGroup, Form, Col, Row } from "react-bootstrap";
 
 import { selectAllTodos, getAllTodos, toggleTodoStatus, deleteTodoAction, selectLoadingStatus } from "../Todo/todoSlice";
-
-const INITIAL_STATE = {
-  todoStatus: "pending"
-}
 
 const TodoList = ({ handleChange, todo, handleDelete }) => {
   return (
@@ -21,7 +17,7 @@ const TodoList = ({ handleChange, todo, handleDelete }) => {
                   onChange={handleChange}
                   name={todo.id}
                   value={todo.status}
-                  checked={todo.status == 'completed' ? true: false }
+                  checked={todo.status === 'completed' ? true: false }
                 />
               </Form.Group>
             </Col>

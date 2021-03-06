@@ -25,7 +25,7 @@ test('should render add button', () => {
   expect(addButton).toBeInTheDocument();
 })
 
-test('should render a form after clicking the add (+) button', () => {
+test('should render a form after clicking the add (+) button', async() => {
   // const state = {
   //   handleShow: jest.fn,
   //   handleClose: jest.fn,
@@ -40,29 +40,61 @@ test('should render a form after clicking the add (+) button', () => {
   // }
   // const store = mockStore(state);
   renderComponent();
-  act(() => {
-    userEvent.click(screen.getByRole('button', { name: /\+/i }))
-  });
+  await act( async () => {
+    userEvent.click(await screen.findByRole('button', { name: /\+/i }))
+   });
   const addTodoTextOnForm = screen.getByText(/Add Todo$/);
   const submitButton = screen.getByRole('button', {name: /Submit/})
   expect(addTodoTextOnForm).toBeInTheDocument();
   expect(submitButton).toBeInTheDocument();
 })
 
-test('should render an input with label category', () => {
+test('should render an input with label category', async () => {
   renderComponent();
-  act(() => {
-    userEvent.click(screen.getByRole('button', { name: /\+/i }))
-  });
+  await act( async () => {
+    userEvent.click(await screen.findByRole('button', { name: /\+/i }))
+   });
   const categoryInput = screen.getByRole('textbox', { name: /Category/i });
   expect(categoryInput).toHaveAttribute('type', 'text');
 })
 
-test('should render an input with label category', () => {
-  renderComponent();
-  act(() => {
-    userEvent.click(screen.getByRole('button', { name: /\+/i }))
-  });
-  const categoryInput = screen.getByRole('textbox', { name: /Category/i });
-  expect(categoryInput).toHaveAttribute('type', 'text');
+test('should activate the submit button when all fields are filled and submit successfully', async () => {
+  const addNewTodoMock = jest.spyOn(actionsAndSelectors, 'addNewTodo');
+  const mockstate = mockStore(actionsAndSelectors.todoInitialState)
+  renderComponent(mockstate);
+  await act( async () => {
+    userEvent.click(await screen.findByRole('button', { name: /\+/i }))
+   });
+   userEvent.type(
+    screen.getByRole('textbox', { name: /Category/i }),
+    'test category'
+  );
+  userEvent.type(
+    screen.getByRole('textbox', { name: /Details/i }),
+    'details'
+  );
+  userEvent.type(
+    screen.getByPlaceholderText('date'),
+    '2021-03-13'
+  );
+  const submitButton = screen.getByRole('button', { name: /Submit/i });
+  expect(submitButton).toBeEnabled();
+  await act( async () => {
+    userEvent.click(await submitButton)
+   });
+   expect(addNewTodoMock).toBeCalled();
+   addNewTodoMock.mockRestore();
 })
+
+
+// test('should submit todo successfully ', async () => {
+//   const addNewTodoMock = jest.spyOn(actionsAndSelectors, 'addNewTodo');
+//   const postTodo = {
+//     category: "test",
+//     description: "hello world",
+//     dueDate: "2021-20-01"
+//   }; 
+//   addNewTodoMock.mockResolvedValueOnce(postTodo)
+//   renderComponent();
+//   expect(addNewTodoMock).toHaveBeenCalledTimes(1);
+// })

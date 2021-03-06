@@ -22,10 +22,10 @@ export const todoSlice = createSlice({
   name: "todo",
   initialState: todoInitialState,
   reducers: {
-    addItemToList: (state, action) => {
+    setItemToList: (state, action) => {
       state.oneTodo = action.payload;
     },
-    getTodoList: (state, action) => {
+    setTodoList: (state, action) => {
       state.todoList = action.payload;
     },
     setSuccessStatus: (state, action) => {
@@ -43,8 +43,8 @@ export const todoSlice = createSlice({
 export const {
   setFailureStatus,
   setSuccessStatus,
-  addItemToList,
-  getTodoList,
+  setItemToList,
+  setTodoList,
   setTodoStatus,
   setLoading,
 } = todoSlice.actions;
@@ -58,7 +58,7 @@ export const addNewTodo = (content) => async (dispatch) => {
       url: "https://todo-baxk.herokuapp.com/todos/add",
       data: content,
     });
-    dispatch(addItemToList(response));
+    dispatch(setItemToList(response));
     dispatch(setSuccessStatus(true));
     dispatch(setFailureStatus(false));
     dispatch(setLoading(false));
@@ -77,10 +77,10 @@ export const getAllTodos = (params) => async (dispatch) => {
       method: "get",
       url: `https://todo-baxk.herokuapp.com/todos?${params}`,
     });
-    dispatch(getTodoList(data.data));
+    dispatch(setTodoList(data.data));
     dispatch(setSuccessStatus(true));
     dispatch(setFailureStatus(false));
-    console.log(data);
+    // console.log(data);
     dispatch(setLoading(false));
   } catch (error) {
     dispatch(setSuccessStatus(false));
@@ -98,7 +98,6 @@ export const toggleTodoStatus = (id, status) => async (dispatch) => {
       url: `https://todo-baxk.herokuapp.com/todos/${id}`,
       data: { status },
     });
-    dispatch(setSuccessStatus(true));
     dispatch(setSuccessStatus(true));
     dispatch(setFailureStatus(false));
     dispatch(setLoading(false));
