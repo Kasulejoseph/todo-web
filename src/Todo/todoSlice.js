@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const axios = require("axios");
-
+const ENDPOINT = process.env.REACT_APP_BACKEND_URL
 export const todoInitialState = {
   todoList: [],
   oneTodo: {
@@ -55,7 +55,7 @@ export const addNewTodo = (content) => async (dispatch) => {
     dispatch(setLoading(true));
     const response = await axios({
       method: "post",
-      url: "https://todo-baxk.herokuapp.com/todos/add",
+      url: `${ENDPOINT}/add`,
       data: content,
     });
     dispatch(setItemToList(response));
@@ -75,7 +75,7 @@ export const getAllTodos = (params) => async (dispatch) => {
     dispatch(setLoading(true));
     const { data } = await axios({
       method: "get",
-      url: `https://todo-baxk.herokuapp.com/todos?${params}`,
+      url: `${ENDPOINT}?${params}`,
     });
     dispatch(setTodoList(data.data));
     dispatch(setSuccessStatus(true));
@@ -95,7 +95,7 @@ export const toggleTodoStatus = (id, status) => async (dispatch) => {
     dispatch(setLoading(true));
     await axios({
       method: "put",
-      url: `https://todo-baxk.herokuapp.com/todos/${id}`,
+      url: `${ENDPOINT}/${id}`,
       data: { status },
     });
     dispatch(setSuccessStatus(true));
@@ -114,7 +114,7 @@ export const deleteTodoAction = (id) => async (dispatch) => {
     dispatch(setLoading(true));
     const { data } = await axios({
       method: "delete",
-      url: `https://todo-baxk.herokuapp.com/todos/${id}`,
+      url: `${ENDPOINT}/${id}`,
     });
     console.log(data);
     dispatch(setSuccessStatus(true));
