@@ -1,3 +1,7 @@
+
+| Statements                  | Branches                | Functions                 | Lines                |
+| --------------------------- | ----------------------- | ------------------------- | -------------------- |
+| ![Statements](#statements#) | ![Branches](#branches#) | ![Functions](#functions#) | ![Lines](#lines#)    |
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

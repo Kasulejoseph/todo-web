@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
-import { getAllTodos } from "./todoSlice";
+import { getAllTodos } from "../Todo/todoSlice";
 
-const SelectForm = ({ input, handleChange }) => (
+export const SelectForm = ({ input, handleChange }) => (
   <div>
     <Form>
       <Form.Group controlId="exampleForm.ControlSelect1">
@@ -31,8 +31,12 @@ export const SelectTodo = () => {
   const handleChange = (event) => {
     event.persist();
     const target = event.target;
-    setInputs(target.value);
-    dispatch(getAllTodos(`category=${target.value}`));
+    const value = target.value.toLowerCase();
+    setInputs(value);
+    if (value === "select a category") {
+      return dispatch(getAllTodos(""));
+    }
+    dispatch(getAllTodos(`category=${value}`));
   };
   return (
     <>
