@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ListGroup, Form, Col, Row } from "react-bootstrap";
 
-import { selectAllTodos, getAllTodos, toggleTodoStatus, deleteTodoAction } from "./todoSlice";
+import { selectAllTodos, getAllTodos, toggleTodoStatus, deleteTodoAction, selectLoadingStatus } from "../Todo/todoSlice";
 
 const INITIAL_STATE = {
   todoStatus: "pending"
@@ -21,6 +21,7 @@ const TodoList = ({ handleChange, todo, handleDelete }) => {
                   onChange={handleChange}
                   name={todo.id}
                   value={todo.status}
+                  checked={todo.status == 'completed' ? true: false }
                 />
               </Form.Group>
             </Col>
@@ -56,6 +57,7 @@ const TodoList = ({ handleChange, todo, handleDelete }) => {
 
 export const GetAllTodos = () => {
   const todos = useSelector(selectAllTodos);
+  const isLoading = useSelector(selectLoadingStatus)
   const dispatch = useDispatch();
   // const [inputs, setInputs] = useState(INITIAL_STATE)
 
@@ -94,6 +96,10 @@ export const GetAllTodos = () => {
             </div>
           ))
         : null}
+        <div>
+          {!isLoading && !todos.length && <p>No Todo(s) Yet</p>}
+          {isLoading && <p>Loading</p>}
+        </div>
     </>
   );
 };

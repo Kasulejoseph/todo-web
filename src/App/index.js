@@ -18,7 +18,7 @@ function App() {
         <Container>
           <Row className="mt-4">
             <Col mt={2} className="mt-3">
-              New Lists
+              New Listings
             </Col>
             <Col>
               <SelectTodo />
