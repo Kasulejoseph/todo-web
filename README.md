@@ -1,7 +1,7 @@
 
 | Statements                  | Branches                | Functions                 | Lines                |
 | --------------------------- | ----------------------- | ------------------------- | -------------------- |
-| ![Statements](#statements#) | ![Branches](#branches#) | ![Functions](#functions#) | ![Lines](#lines#)    |
+| ![Statements](https://img.shields.io/badge/Coverage-39.57%25-red.svg) | ![Branches](https://img.shields.io/badge/Coverage-31.82%25-red.svg) | ![Functions](https://img.shields.io/badge/Coverage-41.67%25-red.svg) | ![Lines](https://img.shields.io/badge/Coverage-39.06%25-red.svg)    |
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
