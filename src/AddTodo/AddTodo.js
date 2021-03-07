@@ -140,9 +140,8 @@ export const AddTodo = () => {
       description,
       dueDate,
     };
-    toast("Wow so easy!");
+    toast("Submitted Successfully!");
     await dispatch(addNewTodo(content));
-    console.log(selectStatus);
     if (selectStatus.success) {
       await dispatch(getAllTodos(""));
       handleClose();

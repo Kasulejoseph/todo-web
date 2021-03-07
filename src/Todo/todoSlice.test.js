@@ -1,3 +1,9 @@
+import mockAxios from "axios";
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+const mockStore = configureMockStore([thunk]);
+
 import todoReducer, {
   todoInitialState,
   setLoading,
@@ -8,6 +14,10 @@ import todoReducer, {
   setTodoList,
   selectAllTodos,
   setItemToList,
+  addNewTodo,
+  deleteTodoAction,
+  getAllTodos,
+  toggleTodoStatus
 } from "./todoSlice";
 const sampleTodoResponse = {
   id: 2,
@@ -19,7 +29,7 @@ const sampleTodoResponse = {
   updatedAt: "2021-03-04T20:38:06.453Z",
 };
 
-describe("todoSlice - reducer, actions and selectors", () => {
+describe("todoSlice - reducer, actions, and selectors", () => {
   it("should return the initial state on first run", () => {
     const nextState = todoInitialState;
     const result = todoReducer(undefined, { type: "" });
@@ -65,4 +75,32 @@ describe("todoSlice - reducer, actions and selectors", () => {
     expect(nextState.oneTodo.length).toEqual(1);
     expect(nextState.oneTodo[0].category).toEqual("test 3");
   });
+  it("should get all todos", async () => {
+    const store = mockStore(todoInitialState);
+    store.clearActions();
+    await store.dispatch(getAllTodos(""));
+    expect(selectAllTodos({todo: todoInitialState}).length).toEqual(0);
+  });
+
+  it("should throw error if the get action was not successfull", async () => {
+    const store = mockStore(todoInitialState);
+    store.clearActions();
+    await store.dispatch(getAllTodos("fakevalue"));
+    expect(selectStatusMessages({ todo: todoInitialState }).success).toEqual(false);
+  });
+
+  it("should throw an error if update action wasn't successfull", async () => {
+    const store = mockStore(todoInitialState);
+    store.clearActions();
+    await store.dispatch(toggleTodoStatus(1, status="pending"));
+    expect(selectStatusMessages({ todo: todoInitialState }).success).toEqual(false);
+  });
+
+  it("should throw an error if delete action wasn't successfull", async () => {
+    const store = mockStore(todoInitialState);
+    store.clearActions();
+    await store.dispatch(deleteTodoAction(1));
+    expect(selectStatusMessages({ todo: todoInitialState }).success).toEqual(false);
+  });
+
 });

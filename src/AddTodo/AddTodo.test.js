@@ -85,16 +85,3 @@ test('should activate the submit button when all fields are filled and submit su
    expect(addNewTodoMock).toBeCalled();
    addNewTodoMock.mockRestore();
 })
-
-
-// test('should submit todo successfully ', async () => {
-//   const addNewTodoMock = jest.spyOn(actionsAndSelectors, 'addNewTodo');
-//   const postTodo = {
-//     category: "test",
-//     description: "hello world",
-//     dueDate: "2021-20-01"
-//   }; 
-//   addNewTodoMock.mockResolvedValueOnce(postTodo)
-//   renderComponent();
-//   expect(addNewTodoMock).toHaveBeenCalledTimes(1);
-// })

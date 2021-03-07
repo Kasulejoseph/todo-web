@@ -60,11 +60,8 @@ export const GetAllTodos = () => {
   const handleChange = async (event) => {
     event.persist();
     const target = event.target;
-    // const value = target.checked ? 'completed' : 'pending';
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    // setInputs((inputs) => ({ ...inputs, [target.name]: value }));
     const status = value ? 'completed': 'pending';
-    // console.log(target.name, value);
     await dispatch(toggleTodoStatus(target.name, status));
     await dispatch(getAllTodos("")); 
   };

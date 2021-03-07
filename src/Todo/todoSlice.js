@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-const axios = require("axios");
-const ENDPOINT = process.env.REACT_APP_BACKEND_URL
+import axios from "../axios"
+
 export const todoInitialState = {
   todoList: [],
   oneTodo: {
@@ -49,14 +49,15 @@ export const {
   setLoading,
 } = todoSlice.actions;
 
-export const addNewTodo = (content) => async (dispatch) => {
+export const addNewTodo = (data) => async (dispatch) => {
+
   dispatch(setSuccessStatus(false));
   try {
     dispatch(setLoading(true));
     const response = await axios({
-      method: "post",
-      url: `${ENDPOINT}/add`,
-      data: content,
+      method: "/post",
+      url: 'add',
+      data,
     });
     dispatch(setItemToList(response));
     dispatch(setSuccessStatus(true));
@@ -65,7 +66,6 @@ export const addNewTodo = (content) => async (dispatch) => {
   } catch (error) {
     dispatch(setSuccessStatus(false));
     dispatch(setFailureStatus(true));
-    console.log(error.response);
     dispatch(setLoading(false));
   }
 };
@@ -75,17 +75,15 @@ export const getAllTodos = (params) => async (dispatch) => {
     dispatch(setLoading(true));
     const { data } = await axios({
       method: "get",
-      url: `${ENDPOINT}?${params}`,
+      url: `?${params}`,
     });
     dispatch(setTodoList(data.data));
     dispatch(setSuccessStatus(true));
     dispatch(setFailureStatus(false));
-    // console.log(data);
     dispatch(setLoading(false));
   } catch (error) {
     dispatch(setSuccessStatus(false));
     dispatch(setFailureStatus(true));
-    console.error(error);
     dispatch(setLoading(false));
   }
 };
@@ -95,7 +93,7 @@ export const toggleTodoStatus = (id, status) => async (dispatch) => {
     dispatch(setLoading(true));
     await axios({
       method: "put",
-      url: `${ENDPOINT}/${id}`,
+      url: `/${id}`,
       data: { status },
     });
     dispatch(setSuccessStatus(true));
@@ -104,7 +102,6 @@ export const toggleTodoStatus = (id, status) => async (dispatch) => {
   } catch (error) {
     dispatch(setSuccessStatus(false));
     dispatch(setFailureStatus(true));
-    console.error(error);
     dispatch(setLoading(false));
   }
 };
@@ -112,25 +109,18 @@ export const toggleTodoStatus = (id, status) => async (dispatch) => {
 export const deleteTodoAction = (id) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const { data } = await axios({
+    const data = await axios({
       method: "delete",
-      url: `${ENDPOINT}/${id}`,
+      url: `/${id}`,
     });
-    console.log(data);
     dispatch(setSuccessStatus(true));
     dispatch(setFailureStatus(false));
     dispatch(setLoading(false));
   } catch (error) {
     dispatch(setSuccessStatus(false));
     dispatch(setFailureStatus(true));
-    console.error(error);
   }
 };
-
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCount = (state) => state.todo.value;
 
 export const selectAllTodos = (state) => state.todo.todoList;
 export const selectLoadingStatus = (state) => state.todo.messages.loading;
