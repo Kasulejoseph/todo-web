@@ -109,7 +109,7 @@ export const toggleTodoStatus = (id, status) => async (dispatch) => {
 export const deleteTodoAction = (id) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const data = await axios({
+    await axios({
       method: "delete",
       url: `/${id}`,
     });
