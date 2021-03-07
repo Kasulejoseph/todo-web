@@ -14,7 +14,7 @@ export const SelectForm = ({ input, handleChange }) => (
           value={input}
         >
           <option>Select a category</option>
-          <option>test 3</option>
+          <option>Tuesday</option>
           <option>Sports</option>
           <option>Java</option>
           <option>Python</option>
