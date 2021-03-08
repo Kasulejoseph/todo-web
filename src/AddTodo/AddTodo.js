@@ -58,7 +58,7 @@ export const AddTodoForm = ({
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group as={Row} controlId="formPlaintextPassword">
+          <Form.Group as={Row} controlId="formPlaintextCategory">
             <Form.Label column sm="2">
               Category:
             </Form.Label>
@@ -87,7 +87,7 @@ export const AddTodoForm = ({
               />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} controlId="formPlaintextPassword">
+          <Form.Group as={Row} controlId="formPlaintextDate">
             <Form.Label column sm="2">
               Date:
             </Form.Label>

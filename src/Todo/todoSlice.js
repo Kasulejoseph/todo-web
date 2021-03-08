@@ -55,7 +55,7 @@ export const addNewTodo = (data) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios({
-      method: "/post",
+      method: "post",
       url: 'add',
       data,
     });
