@@ -5,9 +5,15 @@
 
 # Relevant URLS
 - staging: https://letgetitdone.netlify.app/
-- production: 
+- production: https://main.dvdg6wnbn8lit.amplifyapp.com/
 - E2E: https://github.com/Kasulejoseph/todo-e2e
 - Backend: https://github.com/Kasulejoseph/todo-back
+
+## Tools
+- GitHub, React, Redux, AWS, NETLIFY, CircleCI, CodeCov..
+
+## Mobile View
+<img width="320" alt="Screenshot 2021-03-08 at 17 10 34" src="https://user-images.githubusercontent.com/32167860/110332341-44259a80-8031-11eb-8e7f-7bae41e34718.png">
 
 ## Available Scripts
 
@@ -20,11 +26,12 @@ In the project directory, you can run:
 
 `yarn start` - To start the app
 
-### Tests
+### Units and Intergration Tests
 `npm test` - To run units and integration tests
 
 `npm test -- --coverage` - To run tests with coverage report
-#### End2End tests
+
+### End2End tests
 - Find instructions on how to run e2e tests from [this](https://github.com/Kasulejoseph/todo-e2e) repository
 
 
@@ -40,4 +47,11 @@ In the project directory, you can run:
 ![Alt Text](https://user-images.githubusercontent.com/32167860/110262434-b7dd8e00-7fc4-11eb-9ac1-263b429fe6ef.gif)
 
 #### Delete Todo
+- missing gif
+
+## CI/CI
+<img width="725" alt="Screenshot 2021-03-08 at 17 00 39" src="https://user-images.githubusercontent.com/32167860/110331563-56530900-8030-11eb-843e-03c7bed607f8.png">
+<img width="711" alt="Screenshot 2021-03-08 at 17 01 49" src="https://user-images.githubusercontent.com/32167860/110331612-6539bb80-8030-11eb-8f92-7b30f0452a06.png">
+
+
 
