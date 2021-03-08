@@ -12,6 +12,7 @@ export const SelectForm = ({ input, handleChange }) => (
           onChange={handleChange}
           name="todoCategory"
           value={input}
+          className="mt-3 mb-4"
         >
           <option>Select a category</option>
           <option>Tuesday</option>

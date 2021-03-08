@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Navbar expand="lg" variant="light" bg="light" className="page-header">
+        <Navbar expand="lg" variant="light" className="page-header">
           <Container>
             <Col className="header-site-name mt-2">
-              <h1>GetItDone</h1>
+              <h1>Getit.done</h1>
             </Col>
           </Container>
         </Navbar>
@@ -18,7 +18,7 @@ function App() {
         <Container>
           <Row className="mt-4">
             <Col mt={2} className="mt-3">
-              New Listings
+              <h4>New Listings </h4>
             </Col>
             <Col>
               <SelectTodo />
