@@ -1,9 +1,8 @@
 import mockAxios from "axios";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-
 const mockStore = configureMockStore([thunk]);
-
+let store;
 import todoReducer, {
   todoInitialState,
   setLoading,
@@ -30,6 +29,10 @@ const sampleTodoResponse = {
 };
 
 describe("todoSlice - reducer, actions, and selectors", () => {
+  beforeEach(() => {
+    store = mockStore(todoInitialState);
+    store.clearActions();
+  })
   it("should return the initial state on first run", () => {
     const nextState = todoInitialState;
     const result = todoReducer(undefined, { type: "" });
@@ -76,17 +79,23 @@ describe("todoSlice - reducer, actions, and selectors", () => {
     expect(nextState.oneTodo[0].category).toEqual("test 3");
   });
   it("should get all todos", async () => {
-    const store = mockStore(todoInitialState);
-    store.clearActions();
     await store.dispatch(getAllTodos(""));
-    expect(selectAllTodos({todo: todoInitialState}).length).toEqual(0);
+    const expectedPayload = { type: 'todo/setLoading', payload: true }
+    const actionPayloadLoading = await store.getActions()[0];
+    expect(actionPayloadLoading).toEqual(expectedPayload);
   });
 
   it("should throw error if the get action was not successfull", async () => {
     const store = mockStore(todoInitialState);
-    store.clearActions();
-    await store.dispatch(getAllTodos("fakevalue"));
-    expect(selectStatusMessages({ todo: todoInitialState }).success).toEqual(false);
+    await store.dispatch(getAllTodos("?fakevalue"));
+    const expectedPayload = [
+      { type: 'todo/setLoading', payload: true },
+      { type: 'todo/setSuccessStatus', payload: false },
+      { type: 'todo/setFailureStatus', payload: true },
+      { type: 'todo/setLoading', payload: false }
+    ]
+    const actionPayloadLoading = await store.getActions();
+    expect(actionPayloadLoading).toEqual(expectedPayload);
   });
 
   it("should throw an error if update action wasn't successfull", async () => {
@@ -99,7 +108,7 @@ describe("todoSlice - reducer, actions, and selectors", () => {
   it("should throw an error if delete action wasn't successfull", async () => {
     const store = mockStore(todoInitialState);
     store.clearActions();
-    await store.dispatch(deleteTodoAction(1));
+    await store.dispatch(deleteTodoAction());
     expect(selectStatusMessages({ todo: todoInitialState }).success).toEqual(false);
   });
 
