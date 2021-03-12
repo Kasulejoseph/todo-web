@@ -14,7 +14,6 @@ jest.setTimeout(10000)
 jest.mock('../axios', () => {
   return {
     post: jest.fn(() => Promise.resolve({ data: {} })),
-    defaults: { baseURL: process.env.REACT_APP_BACKEND_URL }
   };
 });
 describe("mocked ", () => {
