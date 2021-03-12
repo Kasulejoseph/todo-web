@@ -27,7 +27,7 @@ const sampleTodoResponse = {
   createdAt: "2021-03-04T04:00:04.226Z",
   updatedAt: "2021-03-04T20:38:06.453Z",
 };
-
+jest.setTimeout(10000)
 describe("todoSlice - reducer, actions, and selectors", () => {
   beforeEach(() => {
     store = mockStore(todoInitialState);
